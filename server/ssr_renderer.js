@@ -20,9 +20,11 @@ const ssrRenderer = function(clientManifest, serverBundle, template) {
 
     const render = (req, res, context) => {
         let doCompress = accepts(req).encoding(['br'])
-        res.setHeader('Content-Type', 'text/html')
+        res.header('Content-Type', 'text/html')
 
-        const fullUrl = 'https://' + req.get('host') + req.originalUrl
+        // TODO I don't know if :authority always comes through. Add some error handling.
+        // TODO fullUrl is gotten before this function is called. Why is this needed?
+        const fullUrl = 'https://' + req.headers[':authority'] + req.headers[':path']
 
         let stream = renderer.renderToStream(context)
         stream.on('error', (err) => {
@@ -36,10 +38,10 @@ const ssrRenderer = function(clientManifest, serverBundle, template) {
         })
 
         if (doCompress) {
-            res.setHeader('Content-Encoding', 'br')
-            stream.pipe(compressStream()).pipe(res)
+            res.header('Content-Encoding', 'br')
+            res.send(stream.pipe(compressStream()))
         } else {
-            stream.pipe(res)
+            res.send(stream)
         }
     }
 
