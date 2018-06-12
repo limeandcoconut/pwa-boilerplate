@@ -12,6 +12,7 @@ module.exports = function(app, cb) {
     // setup on the fly compilation + hot-reload
     clientConfig.entry.app = ['webpack-hot-middleware/client', clientConfig.entry.app]
     clientConfig.output.filename = '[name].js'
+    // TODO isn't noemitonerrors erroneous?
     clientConfig.plugins.push(
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin()

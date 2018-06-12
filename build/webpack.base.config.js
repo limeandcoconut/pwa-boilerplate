@@ -12,7 +12,7 @@ const Visualizer = require('webpack-visualizer-plugin')
 const isProduction = process.env.NODE_ENV === 'production'
 
 let config = {
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    mode: isProduction ? 'production' : 'development',
     output: {
         path: path.resolve(__dirname, '../', 'public', 'dist'),
         publicPath: '/dist/',
@@ -54,6 +54,7 @@ let config = {
         new VueLoaderPlugin(),
         new HTMLPlugin({
             template: 'client/index.template.html',
+            // Inject false turns off automatic injection of Css and JS
             inject: false,
             minify: {
                 collapseWhitespace: isProduction,

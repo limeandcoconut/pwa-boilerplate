@@ -37,6 +37,8 @@ if (process.env.NODE_ENV === 'development') {
         render = require('./ssr_renderer.js')(clientManifest, serverBundle, template)
     })
 
+    // TODO move default meta somewhere
+    // TODO comment on why default meta exists
     app.get('*', (req, res) => {
         if (render) {
             const context = {

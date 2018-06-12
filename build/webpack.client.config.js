@@ -1,10 +1,12 @@
-const webpack = require('webpack')
 const base = require('./webpack.base.config.js')
+
+const webpack = require('webpack')
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
 const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
+
 const isProduction = process.env.NODE_ENV === 'production'
 
 const config = Object.assign({}, base, {
@@ -18,17 +20,6 @@ const config = Object.assign({}, base, {
         }),
         new VueSSRClientPlugin(),
     ]),
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
-                    chunks: 'all',
-                },
-            },
-        },
-    },
 })
 
 if (isProduction) {
@@ -36,8 +27,9 @@ if (isProduction) {
     config.optimization.splitChunks = {
         cacheGroups: {
             vendor: {
-                test: /node_modules/,
+                test: /[\\/]node_modules[\\/]/,
                 chunks: 'initial',
+                // chunks: 'all',
                 name: 'vendor',
                 enforce: true,
             },
@@ -59,6 +51,8 @@ if (isProduction) {
             threshold: 0,
             // minRatio: 0.8,
         }),
+        // It'd be best to read options for this and cater to specific project needs
+        // https://www.npmjs.com/package/sw-precache-webpack-plugin
         new SWPrecacheWebpackPlugin({
             cacheId: 'CHANGEME-app',
             filename: 'service-worker.js',

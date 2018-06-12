@@ -27,7 +27,7 @@ export default {
 @import '../styles/mixins.less';
 
 .foo {
-    // color: blue;
+    color: blue;
 
     .desktop({
         color: #333333;

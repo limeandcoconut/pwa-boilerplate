@@ -25,7 +25,7 @@ const actions = {
     },
     dismissError: ({commit}) => {
         commit('hideError')
-    }
+    },
 }
 
 export default () => new Vuex.Store({state, mutations, actions})

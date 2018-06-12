@@ -21,7 +21,6 @@ export default (context) => {
                 route: router.currentRoute,
             }))).then(() => {
                 context.state = store.state
-                // console.log(`Spent ${Date.now() - s}ms getting data before render`)
                 resolve(app)
             }).catch(reject)
         }, reject)
