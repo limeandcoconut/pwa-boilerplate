@@ -21,9 +21,14 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 // Service workers should be loaded from / instead of a directory like /dist/
-app.use('/service-worker.js', express.static(path.resolve(__dirname, '../public/dist/service-worker.js')))
+app.use('/service-worker.js', express.static(path.resolve(__dirname, '../dist/service-worker.js')))
 
 app.use('/', expressStaticGzip(path.resolve(__dirname, '../', 'public'), {
+    enableBrotli: true,
+    indexFromEmptyFile: false,
+}))
+
+app.use('/dist/', expressStaticGzip(path.resolve(__dirname, '../', 'dist'), {
     enableBrotli: true,
     indexFromEmptyFile: false,
 }))
@@ -59,9 +64,9 @@ if (process.env.NODE_ENV === 'development') {
     // If in production, load the client and server files to be served
     console.log('Server is running in production mode')
 
-    const clientManifest = require('../public/dist/vue-ssr-client-manifest.json')
-    const serverBundlePath = '../public/dist/vue-ssr-server-bundle.json'
-    const template = fs.readFileSync(path.resolve('./public/dist/index.html'), 'utf8')
+    const clientManifest = require('../dist/vue-ssr-client-manifest.json')
+    const serverBundlePath = '../dist/vue-ssr-server-bundle.json'
+    const template = fs.readFileSync(path.resolve('./dist/index.html'), 'utf8')
     let serverBundle = require(serverBundlePath)
     let render = require('./ssr_renderer.js')(clientManifest, serverBundle, template)
 

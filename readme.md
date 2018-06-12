@@ -1,9 +1,11 @@
 For local dev run ```npm run dev```
 
+## Things to do
 Customize config.js
 Customize public/manifest.json
 Add icons
 Change the CacheId for SW in webpack.client.config.js
+Customize robots.txt
 
 ## Real Cert method
 Generate a real ssl cert from Lets Encrypt by using a domain you control and only want to use for local dev like "local.example.org"

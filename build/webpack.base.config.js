@@ -14,7 +14,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 let config = {
     mode: isProduction ? 'production' : 'development',
     output: {
-        path: path.resolve(__dirname, '../', 'public', 'dist'),
+        path: path.resolve(__dirname, '../', 'dist'),
         publicPath: '/dist/',
         filename: '[name]-bundle.js',
     },
