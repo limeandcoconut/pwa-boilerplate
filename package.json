@@ -9,13 +9,13 @@
         "pack-production": "run-p pack-client-production pack-server-production",
         "pack-client-production": "NODE_ENV=production webpack --config build/webpack.client.config.js --progress --hide-modules",
         "pack-server-production": "NODE_ENV=production webpack --config build/webpack.server.config.js --progress --hide-modules",
-        "clean": "rm public/dist/*"
+        "clean": "rm dist/*"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "@babel/core": "^7.1.0",
+        "@babel/core": "^7.1.2",
         "@babel/plugin-syntax-dynamic-import": "^7.0.0",
         "@babel/preset-env": "^7.1.0",
         "autoprefixer": "^9.1.5",

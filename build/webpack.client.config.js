@@ -39,11 +39,10 @@ if (isProduction) {
     // Add Compression plugins and service worker caching
     config.plugins.push(
         new CompressionPlugin({
-            asset: '[path].gz[query]',
             algorithm: 'gzip',
             test: /\.js$|\.css$/,
             threshold: 0,
-            // minRatio: 0.8,
+            minRatio: 0.8,
         }),
         new BrotliPlugin({
             asset: '[path].br[query]',
