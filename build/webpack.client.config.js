@@ -19,6 +19,10 @@ const config = Object.assign({}, base, {
             'process.env.VUE_ENV': '"client"',
         }),
         new VueSSRClientPlugin(),
+        new WebpackBuildNotifierPlugin({
+            title: 'Webpack Client Build',
+            suppressSuccess: true,
+        }),
     ]),
 })
 
@@ -70,14 +74,6 @@ if (isProduction) {
             // Don't allow the service worker to try to cache google analytics or your tracking will stop working
             // Disable any other scripts you don't want cached here as well
             staticFileGlobsIgnorePatterns: [/google-analytics.com/],
-        })
-    )
-} else {
-    // In development notify if the build fails
-    config.plugins.push(
-        new WebpackBuildNotifierPlugin({
-            title: 'Webpack Client Build',
-            suppressSuccess: true,
         })
     )
 }

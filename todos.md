@@ -5,7 +5,8 @@
 - [ ] Add isProduction helper and general server helpers folder
 - [ ] 404 routes don't seem to actually be returning a 404 error code
 - [ ] Auto generate sitemap
- 
+- [ ] Add fancy resolve helpers to webpack config
+
 Css extraction currently isn't available. Follow these threads for updates:
 https://github.com/webpack-contrib/mini-css-extract-plugin/issues/90
 https://github.com/webpack-contrib/mini-css-extract-plugin/issues/173

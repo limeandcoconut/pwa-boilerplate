@@ -1,5 +1,4 @@
 const path = require('path')
-const webpack = require('webpack')
 
 // Core Deps required for packing
 const HTMLPlugin = require('html-webpack-plugin')
@@ -64,7 +63,7 @@ let config = {
     optimization: {},
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (isProduction) {
     config.plugins.push(
         new Visualizer({filename: '../stats.html'}),
         new MinifyPlugin(),
@@ -73,7 +72,6 @@ if (process.env.NODE_ENV === 'production') {
     config.devtool = 'cheap-module-eval-source-map'
     // config.devtool = 'cheap-eval-source-map'
     // config.devtool = 'eval'
-    config.plugins.push(new webpack.NoEmitOnErrorsPlugin())
 }
 
 module.exports = config

@@ -22,17 +22,11 @@ const config = Object.assign({}, base, {
             'process.env.VUE_ENV': '"server"',
         }),
         new VueSSRServerPlugin(),
-    ]),
-})
-
-if (!isProduction) {
-    // In development notify if the build fails
-    config.plugins.push(
         new WebpackBuildNotifierPlugin({
             title: 'Webpack Server Build',
             suppressSuccess: true,
-        })
-    )
-}
+        }),
+    ]),
+})
 
 module.exports = config
