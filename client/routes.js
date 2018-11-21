@@ -38,5 +38,4 @@ let options = {
     },
 }
 
-// export default router
 export default () => new Router(options)

@@ -55,9 +55,6 @@ let config = {
             template: 'client/index.template.html',
             // Inject false turns off automatic injection of Css and JS
             inject: false,
-            minify: {
-                collapseWhitespace: isProduction,
-            },
         }),
     ],
     optimization: {},

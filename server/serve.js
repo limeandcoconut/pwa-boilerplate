@@ -1,19 +1,11 @@
 const path = require('path')
 const fs = require('fs')
 const express = require('express')
-const spdy = require('spdy')
 const helmet = require('helmet')
 const expressStaticGzip = require('express-static-gzip')
 const app = express()
 const {frontendPort} = require('../config.js')
 const bodyParser = require('body-parser')
-
-// Create an HTTP2 compatible server.
-// Express currently doesn't support the core HTTP2, but keep an eye on that going forward
-const server = spdy.createServer({
-    key: fs.readFileSync(path.resolve(__dirname, '../', 'certs/', 'key.pem')),
-    cert: fs.readFileSync(path.resolve(__dirname, '../', 'certs/', 'fullchain.pem')),
-}, app)
 
 // Apply some useful plugins like helmet (security) and bodyParser (post param decoding)
 app.use(helmet())
@@ -83,7 +75,7 @@ if (process.env.NODE_ENV === 'development') {
     })
 }
 
-server.listen(frontendPort, (err) => {
+app.listen(frontendPort, (err) => {
     if (err) {
         throw err
     }

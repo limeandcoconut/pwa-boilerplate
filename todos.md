@@ -1,3 +1,5 @@
+- [ ] Dynamic author tag
+- [ ] Theme color and related meta should pull from config (msapplication-TileImage)
 - [ ] Figure out a table_mobile mixin
 - [ ] Add some fancy image optimization
 - [ ] Make notifications of server and client build both run, or find out why they aren't.

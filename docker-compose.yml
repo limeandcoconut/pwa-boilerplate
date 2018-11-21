@@ -1,0 +1,20 @@
+version: "3"
+services:
+    # node:
+    #     image: node:alpine
+    #     container_name: node
+    #     working_dir: /home/node/app
+    #     volumes:
+    #         - ./:/home/node/app
+    #     command: "npm run production"
+    haproxy:
+        image: haproxy
+        container_name: haproxy-proxy
+        ports:
+            - 443:443
+            - 80:80
+        volumes:
+            - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+            - ./certs:/etc/ssl/
+        # links:
+        #     - node:node
