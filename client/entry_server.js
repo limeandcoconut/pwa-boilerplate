@@ -7,15 +7,13 @@ export default (context) => {
         router.push(context.url)
 
         router.onReady(() => {
-            // If the component being loaded is named fourohfour and we aren't loading the 404 page, throw an error
+            // The router has a catchAll route which has a meta key of isFourOhFour
             // This lets the SSR renderer to know it should send a status code of 404
-            const matchedComponents = router.getMatchedComponents()
-            matchedComponents.forEach(({name}) => {
-                if (name === 'fourohfour' && context.url !== '/404') {
-                    return reject({code: 404})
-                }
-            })
+            if (router.currentRoute.meta.isFourOfFour) {
+                return reject({code: 404})
+            }
 
+            const matchedComponents = router.getMatchedComponents()
             Promise.all(matchedComponents.map(({asyncData}) => asyncData && asyncData({
                 store,
                 route: router.currentRoute,
