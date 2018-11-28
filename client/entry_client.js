@@ -1,4 +1,4 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 // import VueAnalytics from 'vue-analytics'
 import createApp from './create_app.js'
 

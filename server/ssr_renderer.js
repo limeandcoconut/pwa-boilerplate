@@ -22,12 +22,11 @@ const ssrRenderer = function(clientManifest, serverBundle, template) {
         let doCompress = accepts(req).encoding(['br'])
         res.setHeader('Content-Type', 'text/html')
 
-        const fullUrl = 'https://' + req.get('host') + req.originalUrl
-
         let stream = renderer.renderToStream(context)
         stream.on('error', (err) => {
             if (err.code === 404) {
                 res.statusCode = 404
+                const fullUrl = 'https://' + req.get('host') + req.originalUrl
                 render(req, res, {url: '/404', fullUrl})
             } else {
                 console.error(err)
