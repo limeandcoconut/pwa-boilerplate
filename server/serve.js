@@ -40,9 +40,6 @@ if (process.env.NODE_ENV === 'development') {
         if (render) {
             const context = {
                 url: req.url,
-                meta: {
-                    title: 'Default Title',
-                },
                 fullUrl: 'https://' + req.get('host') + req.originalUrl,
             }
 
@@ -65,9 +62,6 @@ if (process.env.NODE_ENV === 'development') {
     app.get('*', (req, res) => {
         const context = {
             url: req.url,
-            meta: {
-                title: 'Default Title',
-            },
             fullUrl: 'https://' + req.get('host') + req.originalUrl,
         }
 

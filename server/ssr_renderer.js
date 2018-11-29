@@ -27,7 +27,11 @@ const ssrRenderer = function(clientManifest, serverBundle, template) {
             if (err.code === 404) {
                 res.statusCode = 404
                 const fullUrl = 'https://' + req.get('host') + req.originalUrl
-                render(req, res, {url: '/404', fullUrl})
+                const context = {
+                    url: '/404',
+                    fullUrl,
+                }
+                render(req, res, context)
             } else {
                 console.error(err)
                 res.send('Unknown error rendering content')
