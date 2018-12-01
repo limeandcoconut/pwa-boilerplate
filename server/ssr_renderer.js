@@ -8,10 +8,6 @@ const createRenderer = (serverBundle, clientManifest, template) => {
         clientManifest,
         inject: false,
         runInNewContext: false,
-        // cache: require('lru-cache')({
-        //     max: 1000,
-        //     maxAge: 1000 * 60 * 15,
-        // }),
     })
 }
 
