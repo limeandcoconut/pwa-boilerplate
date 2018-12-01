@@ -26,10 +26,9 @@ const ssrRenderer = function(clientManifest, serverBundle, template) {
         stream.on('error', (err) => {
             if (err.code === 404) {
                 res.statusCode = 404
-                const fullUrl = 'https://' + req.get('host') + req.originalUrl
                 const context = {
                     url: '/404',
-                    fullUrl,
+                    fullUrl: 'https://' + req.headers.host + req.url,
                 }
                 render(req, res, context)
             } else {
